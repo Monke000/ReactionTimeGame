@@ -17,10 +17,13 @@ public class LogicScript : MonoBehaviour
     public GameObject score;
     public GameObject retry;
     public int endscore = 1000;
+    public int nextSceneToLoad;
+    public GameObject menuButton;
+    public bool isplay? = false;
     // Start is called before the first frame update
     void Start()
     {
-        randomtime = Random.Range(3, 20);
+        randomtime = Random.Range(3, 11);
     }
 
     // Update is called once per frame
@@ -48,6 +51,7 @@ public class LogicScript : MonoBehaviour
     {
         clicktime = false;
         retry.SetActive(true);
+        menuButton.SetActive(true);
     }
     public void Restart()
     {
@@ -58,5 +62,15 @@ public class LogicScript : MonoBehaviour
         bonk.Play();
         clickButton.SetActive(true);
         score.SetActive(true);
+    }
+    public void Play()
+    {
+        nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(nextSceneToLoad);
+    }
+    public void Menu()
+    {
+        nextSceneToLoad = SceneManager.GetActiveScene().buildIndex - 1;
+        SceneManager.LoadScene(nextSceneToLoad);
     }
 }
