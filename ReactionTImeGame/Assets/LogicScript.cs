@@ -15,6 +15,8 @@ public class LogicScript : MonoBehaviour
     public AudioSource bonk;
     public Text scoreText;
     public GameObject score;
+    public GameObject retry;
+    public int endscore = 1000;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,9 +26,8 @@ public class LogicScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (clicktime == true)
-        {
+        { 
             timer2 += Time.deltaTime;
             scoreText.text = timer2.ToString();
         }
@@ -42,12 +43,16 @@ public class LogicScript : MonoBehaviour
             timer += Time.deltaTime;
         }
     }
+
     public void joen()
     {
-        Time.timeScale += 1;
         clicktime = false;
+        retry.SetActive(true);
     }
-    
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     void spawnPipe()
     { 
         bonk.Play();
