@@ -19,7 +19,7 @@ public class LogicScript : MonoBehaviour
     public int endscore = 1000;
     public int nextSceneToLoad;
     public GameObject menuButton;
-    public bool isplay? = false;
+    public bool isplay = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +29,15 @@ public class LogicScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (clicktime == true)
+        if(SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            isplay = true;
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            isplay = false;
+        }
+        if (clicktime == true && isplay == true)
         { 
             timer2 += Time.deltaTime;
             scoreText.text = timer2.ToString();
